@@ -1,3 +1,6 @@
+#ifndef TEST_H  // 如果未定义 TEST_H
+#define TEST_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,14 +50,6 @@ typedef struct Address {
 } Address_t;
 
 
-static const char *field_names[] = {
-    "PFI", "EZI_ADD", "SRC_VERIF", "PROPSTATUS", "GCODEFEAT", "LOC_DESC",
-    "BLGUNTTYP", "HSAUNITID", "BUNIT_PRE1", "BUNIT_ID1", "BUNIT_SUF1",
-    "BUNIT_PRE2", "BUNIT_ID2", "BUNIT_SUF2", "FLOOR_TYPE", "FLOOR_NO_1",
-    "FLOOR_NO_2", "BUILDING", "COMPLEX", "HSE_PREF1", "HSE_NUM1", "HSE_SUF1",
-    "HSE_PREF2", "HSE_NUM2", "HSE_SUF2", "DISP_NUM1", "ROAD_NAME", "ROAD_TYPE",
-    "RD_SUF", "LOCALITY", "STATE", "POSTCODE", "ACCESSTYPE", "x", "y"
-};
 
 typedef struct Node {
     Address_t data;
@@ -63,3 +58,4 @@ typedef struct Node {
 
 Node_t* read_csv(char* filename, FILE* out_file);
 Node_t* create_node(Address_t* address);
+#endif 

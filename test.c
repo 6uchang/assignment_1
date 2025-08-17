@@ -44,6 +44,7 @@ Node_t* read_csv(char* filename, FILE* out_file) {
     } */ 
 
     Node_t* head = NULL;
+    Node_t* tail = NULL;
     char line[MAX_LENGTH];
 
     // 跳过标题行
@@ -101,8 +102,15 @@ Node_t* read_csv(char* filename, FILE* out_file) {
         // 链表节点
         Node_t* new_node = create_node(&addr);
         if (new_node) {
-            new_node->next = head;
+            if (head == NULL) {
+        // 第一个节点：头和尾都指向它
             head = new_node;
+            tail = new_node;
+    } else {
+        // 后续节点：插入到尾部
+            tail->next = new_node;  // 原尾部节点的next指向新节点
+            tail = new_node;        // 更新尾部指针到新节点
+    }
         } else {
             fprintf(stderr, "Error: Failed to create node for record %d\n", record_count + 1);
         }

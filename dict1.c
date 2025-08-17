@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "test.h"
+#include "search.h"
 
 int main(int argc, char* argv[]) {
     if (argc != 4) {
@@ -14,15 +14,28 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    FILE* out_file = fopen(argv[3], "w");
+    FILE* out_file = fopen(argv[3], "a");// w改成a，持续接受输出
     if (!out_file) {
         fprintf(stderr, "Cannot open output file %s\n", argv[3]);
         return 1;
     } else {
         fprintf(stderr, "Opened output file %s\n", argv[3]);
     }
+    Node_t* head = read_csv(argv[2], NULL); 
+    char keyword[MAX_CHAR];
+    while(1){
+        if(fgets(keyword, MAX_CHAR, stdin)==NULL){
+            break;
 
-    Node_t* head = read_csv(argv[2], out_file);
+        }//这里可以去掉？
+        keyword[strcspn(keyword, "\n")] = '\0';
+        printf("%s\n", keyword);
+        int result = compare_key(head, keyword, out_file);
+        printf("%s --> %d records found - comparisons: ", keyword, result);
+
+    }
+
+    
     
     int count = 0;
     Node_t* current = head;
