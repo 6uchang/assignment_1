@@ -3,9 +3,14 @@
 #include <stdio.h>
 #include "test.h"
 
+#define BITS_PER_CHAR 8    
+#define NULL_TERMINATOR 1
+
+
 char* char_turn_into_binary(char letter);
 char* string_into_binary(const char* whole_str);
-int compare_key(Node_t *head, char* input_key, FILE* out_file);
+int count_bit(const char* input_binary, const char* curr_line_binary);
+void compare_key(Node_t *head, char* input_key, FILE* out_file);
 
 static const char *field_names[] = {
     "PFI", "EZI_ADD", "SRC_VERIF", "PROPSTATUS", "GCODEFEAT", "LOC_DESC",

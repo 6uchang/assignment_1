@@ -7,7 +7,6 @@
 
 #define MAX_CHAR 127
 #define MAX_LENGTH 511
-#define MAX_LEN_NUM 10 // max length of number
 #define NUM_COL 35 // number of columns in total
 
 
