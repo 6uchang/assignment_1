@@ -72,7 +72,7 @@ void compare_key(Node_t *head, char* input_key, FILE* out_file){
     fprintf(out_file, "%s \n", input_key);
     while(curr_line){
         node_comparisons++; // 访问了一个节点
-        char *curr_line_binary = string_into_binary(curr_line->data.EZI_ADD);
+        char *curr_line_binary = string_into_binary(curr_line->data.fields[1]);
         if (!curr_line_binary) {
             free(input_binary);
             return; // 内存分配失败
@@ -84,15 +84,10 @@ void compare_key(Node_t *head, char* input_key, FILE* out_file){
         if(strcmp(input_binary, curr_line_binary) == 0){
             result++;
             fprintf(out_file, "-->");
-            char *every_field = (char *)&(curr_line->data);  
-
-            // 处理前 33 个字符串字段
-            for (int i = 0; i < NUM_COL-2; i++) {
-                // 拷贝字符串
-                every_field[MAX_CHAR - 1] = '\0';               // 确保结尾 '\0'
-                fprintf(out_file, " %s: %s ||", field_names[i], every_field); 
-                every_field += MAX_CHAR;// 跳到下一个字段
-}
+            for (int i = 0; i < NUM_COL-2; i++) {  // NUM_COL-2 对应33个字符串字段
+                // fields[i] 是第i个动态分配的字符串，已确保以\0结尾
+                fprintf(out_file, " %s: %s ||", field_names[i], curr_line->data.fields[i]); 
+            }
 
             // 处理数值字段
             

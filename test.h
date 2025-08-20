@@ -8,44 +8,13 @@
 #define MAX_CHAR 127
 #define MAX_LENGTH 511
 #define NUM_COL 35 // number of columns in total
+#define NUM_DOUBLE 2
 
 
-typedef struct Address {
-    char PFI[MAX_CHAR];//改了长度
-    char EZI_ADD[MAX_CHAR];
-    char SRC_VERIF[MAX_CHAR];
-    char PROPSTATUS[MAX_CHAR];
-    char GCODEFEAT[MAX_CHAR];
-    char LOC_DESC[MAX_CHAR];
-    char BLGUNTTYP[MAX_CHAR];
-    char HSAUNITID[MAX_CHAR];
-    char BUNIT_PRE1[MAX_CHAR];
-    char BUNIT_ID1[MAX_CHAR];
-    char BUNIT_SUF1[MAX_CHAR];
-    char BUNIT_PRE2[MAX_CHAR];
-    char BUNIT_ID2[MAX_CHAR];
-    char BUNIT_SUF2[MAX_CHAR];
-    char FLOOR_TYPE[MAX_CHAR];
-    char FLOOR_NO_1[MAX_CHAR];
-    char FLOOR_NO_2[MAX_CHAR];
-    char BUILDING[MAX_CHAR];
-    char COMPLEX[MAX_CHAR];
-    char HSE_PREF1[MAX_CHAR];
-    char HSE_NUM1[MAX_CHAR];
-    char HSE_SUF1[MAX_CHAR];
-    char HSE_PREF2[MAX_CHAR];
-    char HSE_NUM2[MAX_CHAR];
-    char HSE_SUF2[MAX_CHAR];
-    char DISP_NUM1[MAX_CHAR];
-    char ROAD_NAME[MAX_CHAR];
-    char ROAD_TYPE[MAX_CHAR];
-    char RD_SUF[MAX_CHAR];
-    char LOCALITY[MAX_CHAR];
-    char STATE[MAX_CHAR];
-    char POSTCODE[MAX_CHAR];
-    char ACCESSTYPE[MAX_CHAR];
-    long double x;
-    long double y;
+typedef struct {
+    char* fields[NUM_COL-NUM_DOUBLE];  // 前33个字符串字段，每个指向动态分配的内存
+    long double x;     // 数值字段x
+    long double y;     // 数值字段y
 } Address_t;
 
 

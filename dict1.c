@@ -49,11 +49,13 @@ int main(int argc, char* argv[]) {
     
     // Free memory allocated for the linked list
     Node_t* current = head;
-    while (current != NULL) {
-        Node_t* temp = current;
-        current = current->next;
-        free(temp);
+while (current != NULL) {
+    Node_t* temp = current;
+    // 先释放33个字符串字段的动态内存
+    for (int i = 0; i < 33; i++) {
+        free(temp->data.fields[i]);  // 释放每个字符串
     }
-
-    return 0;
+    current = current->next;
+    free(temp);  // 最后释放节点本身
+}
 }
